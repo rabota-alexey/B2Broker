@@ -1,0 +1,90 @@
+.settings {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+
+.settings__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings__label {
+  margin-bottom: 10px;
+}
+
+.settings__input {
+  width: 100%;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__header,
+  &__row,
+  &__nested-header,
+  &__nested-row {
+    display: flex;
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid #ddd;
+    border-bottom: 1px solid black;
+    margin-top: 1px;
+    padding: 8px 0;
+    text-align: center;
+    min-width: 100px; // Minimum width for cells to avoid too much squeezing
+
+    &:has(> .table__nested) {
+      // Remove styles for the column with complex data structure
+      padding: 0;
+      outline: none;
+    }
+
+    &:nth-child(1) {
+      width: 150px;
+    } // ID column fixed width
+    &:nth-child(2) {
+      width: 100px;
+    } // Integer column fixed width
+    &:nth-child(3) {
+      flex-grow: 1;
+    }
+    &:nth-child(4) {
+      width: 140px;
+    } // Color column fixed width
+    &:nth-child(5) {
+      width: 200px;
+    } // Child column fixed width
+  }
+
+  &__header {
+    background-color: #f3f3f3;
+  }
+
+  &__nested {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & .table__cell {
+      margin-bottom: -1px; // To hide extra outline
+    }
+  }
+
+  &__nested-header,
+  &__nested-row {
+    display: flex;
+  }
+}
+
+// For all header styles
+[class*='header'] {
+  font-weight: bold;
+}
